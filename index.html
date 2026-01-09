@@ -3,89 +3,110 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Studio Innovazione Sociale</title>
+  <title>Studio Innovazione Sociale & IA</title>
   <style>
-    :root{--bg:#f8fafc;--accent:#059669;--border:#e2e8f0}
-    body,html{height:100%;margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);overflow:hidden}
+    :root{--bg:#f0f2f5;--card:#ffffff;--accent:#059669;--muted:#4b5563;--border:#e5e7eb}
+    html,body{height:100%;margin:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif}
+    body{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top left, #ecfdf5, var(--bg));padding:20px;box-sizing:border-box}
     
-    /* Schermata Iniziale */
-    #landing{display:flex;align-items:center;justify-content:center;height:100%;padding:20px;box-sizing:border-box}
-    .card{background:#fff;padding:40px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.1);max-width:600px}
-    
-    /* Layout Esperimento */
-    #experiment{display:none;display:flex;height:100vh;width:100vw}
-    
-    /* Colonna Sinistra (Domande) */
-    .left-panel{width:50%;padding:30px;border-right:2px solid var(--border);display:flex;flex-direction:column;gap:20px;overflow-y:auto;background:#fff}
-    .box{border:1px solid var(--border);border-radius:12px;padding:20px;background:#f9fafb}
-    .box h3{margin-top:0;color:#1e293b}
-    textarea{width:100%;height:200px;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:inherit;resize:none}
-    
-    /* Colonna Destra (Strumenti) */
-    .right-panel{width:50%;background:#fff;position:relative}
-    iframe{width:100%;height:100%;border:none}
-    
-    /* Bottoni */
-    .btn{background:var(--accent);color:#fff;border:0;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;font-size:16px}
-    .btn-submit{margin-top:10px;align-self:flex-end}
-    .ai-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:40px}
+    /* Card identica alla versione 1 */
+    .card{width:100%;max-width:650px;background:var(--card);border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.05);padding:40px;box-sizing:border-box}
+    h1{margin:0 0 12px;font-size:24px;color:#111827;line-height:1.2}
+    p.lead{margin:0 0 24px;color:var(--muted);font-size:16px;line-height:1.5}
+    .consent{background:#f9fafb;border-radius:12px;padding:20px;margin-bottom:24px;border:1px solid var(--border)}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap}
+    button, .btn-link{border:0;padding:14px 24px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;text-align:center}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-secondary{background:#fff;color:var(--muted);border:1px solid #d1d5db}
+    .small{font-size:14px;color:var(--muted);line-height:1.4}
+    footer{margin-top:24px;padding-top:20px;border-top:1px solid #f3f4f6;font-size:13px;color:#9ca3af}
+    a{color:var(--accent);text-decoration:none}
 
+    /* Stile per l'area risposta */
+    textarea{width:100%;height:180px;border:1px solid var(--border);border-radius:8px;padding:15px;margin:15px 0;font-family:inherit;resize:none;box-sizing:border-box}
+    .tool-box{background:#eff6ff;padding:20px;border-radius:12px;border:1px solid #dbeafe;margin-bottom:20px}
+    
     .hidden{display:none !important}
   </style>
 </head>
 <body>
 
-  <div id="landing">
-    <div class="card">
-      <h1>Studio sull'Innovazione Sociale</h1>
-      <p>Benvenuto. In questo studio ti chiederemo di analizzare un caso e proporre una soluzione utilizzando gli strumenti che ti verranno assegnati.</p>
-      <button class="btn" onclick="startExperiment()">Sì, accetto di partecipare</button>
-      <p style="font-size:12px;color:#94a3b8;margin-top:20px">Contatto: <a href="mailto:luca.zennaro@unive.it">luca.zennaro@unive.it</a></p>
-    </div>
-  </div>
+  <main id="landing-page" class="card">
+    <h1>Invito alla Partecipazione — Studio sull'Innovazione Sociale</h1>
+    <p class="lead">Stiamo conducendo una ricerca su come gli imprenditori sociali disegnano i propri Business Model utilizzando diverse tecnologie.</p>
 
-  <div id="experiment" class="hidden">
-    <div class="left-panel">
-      <div class="box">
-        <h3>Domanda 1</h3>
-        <p id="domanda-testo">Analizza il seguente modello di business sociale e proponi tre miglioramenti innovativi (xxx).</p>
+    <section class="consent">
+      <h2 style="font-size:18px;margin:0 0 10px;color:#111827">Informazioni sullo studio</h2>
+      <p class="small" style="margin-bottom:12px">
+        Partecipando, verrai assegnato casualmente a uno dei due metodi di lavoro (IA o motori di ricerca tradizionali).
+      </p>
+      <ul class="small" style="margin-bottom:12px; padding-left:20px">
+        <li><strong>Durata:</strong> Circa 1 ora.</li>
+        <li><strong>Privacy:</strong> Dati trattati in forma anonima.</li>
+      </ul>
+    </section>
+
+    <div class="buttons">
+      <button id="participateBtn" class="btn-primary">Sì, accetto di partecipare</button>
+      <button id="noBtn" class="btn-secondary">No, non desidero partecipare</button>
+    </div>
+
+    <footer>
+      <p>Per domande contattare: <a href="mailto:luca.zennaro@unive.it">luca.zennaro@unive.it</a></p>
+    </footer>
+  </main>
+
+  <div id="experiment-page" class="card hidden">
+    <h1 id="tool-title">Strumento assegnato</h1>
+    
+    <div class="tool-box" id="tool-instruction">
       </div>
+
+    <div class="question-section">
+      <h3 style="margin-top:0">Domanda 1</h3>
+      <p class="small">Analizza il seguente modello di business sociale e proponi tre miglioramenti innovativi (xxx).</p>
       
-      <div class="box">
-        <h3>La tua risposta</h3>
-        <textarea placeholder="Scrivi qui la tua proposta..."></textarea>
-        <button class="btn btn-submit" onclick="alert('Risposta salvata! (Simulazione)')">Invia Risposta</button>
+      <textarea id="userResponse" placeholder="Scrivi qui la tua risposta dopo aver usato lo strumento assegnato..."></textarea>
+      
+      <div class="buttons">
+        <button class="btn-primary" onclick="alert('Risposta registrata!')">Invia Risposta</button>
       </div>
     </div>
-
-    <div class="right-panel" id="tool-container">
-      </div>
   </div>
 
   <script>
-    function startExperiment() {
-      // 1. Nascondi landing e mostra esperimento
-      document.getElementById('landing').classList.add('hidden');
-      document.getElementById('experiment').classList.remove('hidden');
-      document.getElementById('experiment').style.display = 'flex';
+    const participateBtn = document.getElementById('participateBtn');
+    const landingPage = document.getElementById('landing-page');
+    const experimentPage = document.getElementById('experiment-page');
+    const toolInstruction = document.getElementById('tool-instruction');
+    const toolTitle = document.getElementById('tool-title');
 
-      const toolContainer = document.getElementById('tool-container');
-      
-      // 2. Randomizzazione 50/50
-      if (Math.random() < 0.5) {
-        // GRUPPO GOOGLE
-        toolContainer.innerHTML = `<iframe src="https://www.google.com/search?igu=1"></iframe>`;
+    participateBtn.addEventListener('click', () => {
+      landingPage.classList.add('hidden');
+      experimentPage.classList.remove('hidden');
+
+      const isAI = Math.random() < 0.5;
+
+      if (isAI) {
+        toolTitle.innerText = "Strumento assegnato: ChatGPT";
+        toolInstruction.innerHTML = `
+          <p class="small" style="margin-top:0">Per rispondere alla domanda, utilizza l'assistente IA:</p>
+          <a href="https://chatgpt.com" target="_blank" class="btn-primary btn-link">Apri ChatGPT in una nuova scheda</a>
+          <p class="small" style="margin-top:10px; font-size:12px; color:#1e40af">Una volta consultata l'IA, torna qui per scrivere la risposta.</p>
+        `;
       } else {
-        // GRUPPO AI
-        toolContainer.innerHTML = `
-          <div class="ai-placeholder">
-            <h3>Strumento Assegnato: Assistente IA</h3>
-            <p>Per questo compito, utilizza ChatGPT per generare idee e supporto.</p>
-            <a href="https://chatgpt.com" target="_blank" class="btn" style="text-decoration:none">Apri ChatGPT in una nuova scheda</a>
-            <p style="margin-top:20px; font-size:14px; color:#64748b">Torna qui per scrivere la tua risposta finale dopo aver consultato l'IA.</p>
-          </div>`;
+        toolTitle.innerText = "Strumento assegnato: Google";
+        toolInstruction.innerHTML = `
+          <p class="small" style="margin-top:0">Per rispondere alla domanda, utilizza il motore di ricerca:</p>
+          <a href="https://www.google.com" target="_blank" class="btn-primary btn-link" style="background:#4285f4">Apri Google in una nuova scheda</a>
+          <p class="small" style="margin-top:10px; font-size:12px; color:#1e40af">Una volta fatta la ricerca, torna qui per scrivere la risposta.</p>
+        `;
       }
-    }
+    });
+
+    document.getElementById('noBtn').addEventListener('click', () => {
+      alert('Grazie per il tuo tempo.');
+    });
   </script>
 </body>
 </html>
