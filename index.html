@@ -3,88 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Studio Innovazione Sociale & IA</title>
+  <title>Studio Innovazione Sociale</title>
   <style>
-    :root{--bg:#f0f2f5;--card:#ffffff;--accent:#059669;--muted:#4b5563}
-    html,body{height:100%;margin:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif}
-    body{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top left, #ecfdf5, var(--bg));padding:20px}
-    .card{width:100%;max-width:650px;background:var(--card);border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.05);padding:40px}
-    h1{margin:0 0 12px;font-size:24px;color:#111827;line-height:1.2}
-    p.lead{margin:0 0 24px;color:var(--muted);font-size:16px;line-height:1.5}
-    .consent{background:#f9fafb;border-radius:12px;padding:20px;margin-bottom:24px;border:1px solid #e5e7eb}
-    .buttons{display:flex;gap:12px;flex-wrap:wrap}
-    button{border:0;padding:14px 24px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.2s}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-primary:hover{background:#047857;transform:translateY(-1px)}
-    .btn-secondary{background:#fff;color:var(--muted);border:1px solid #d1d5db}
-    .btn-secondary:hover{background:#f3f4f6}
-    .small{font-size:14px;color:var(--muted);line-height:1.4}
-    .hidden{display:none}
-    footer{margin-top:24px;padding-top:20px;border-top:1px solid #f3f4f6;font-size:13px;color:#9ca3af}
-    a{color:var(--accent);text-decoration:none}
+    :root{--bg:#f8fafc;--accent:#059669;--border:#e2e8f0}
+    body,html{height:100%;margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);overflow:hidden}
+    
+    /* Schermata Iniziale */
+    #landing{display:flex;align-items:center;justify-content:center;height:100%;padding:20px;box-sizing:border-box}
+    .card{background:#fff;padding:40px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.1);max-width:600px}
+    
+    /* Layout Esperimento */
+    #experiment{display:none;display:flex;height:100vh;width:100vw}
+    
+    /* Colonna Sinistra (Domande) */
+    .left-panel{width:50%;padding:30px;border-right:2px solid var(--border);display:flex;flex-direction:column;gap:20px;overflow-y:auto;background:#fff}
+    .box{border:1px solid var(--border);border-radius:12px;padding:20px;background:#f9fafb}
+    .box h3{margin-top:0;color:#1e293b}
+    textarea{width:100%;height:200px;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:inherit;resize:none}
+    
+    /* Colonna Destra (Strumenti) */
+    .right-panel{width:50%;background:#fff;position:relative}
+    iframe{width:100%;height:100%;border:none}
+    
+    /* Bottoni */
+    .btn{background:var(--accent);color:#fff;border:0;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;font-size:16px}
+    .btn-submit{margin-top:10px;align-self:flex-end}
+    .ai-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:40px}
+
+    .hidden{display:none !important}
   </style>
 </head>
 <body>
-  <main class="card" role="main">
-    <h1>Invito alla Partecipazione — Studio sull'Innovazione Sociale</h1>
-    <p class="lead">Stiamo conducendo una ricerca su come gli imprenditori sociali disegnano i propri Business Model utilizzando diverse tecnologie.</p>
 
-    <section class="consent">
-      <h2 style="font-size:18px;margin:0 0 10px;color:#111827">Informazioni sullo studio</h2>
-      <p class="small" style="margin-bottom:12px">
-        Partecipando, verrai assegnato casualmente a uno dei due metodi di lavoro (IA o motori di ricerca tradizionali) per innovare un modello di business.
-      </p>
-      <ul class="small" style="margin-bottom:12px; padding-left:20px">
-        <li><strong>Durata:</strong> Circa 1 ora.</li>
-        <li><strong>Volontarietà:</strong> Puoi interrompere lo studio in qualsiasi momento.</li>
-        <li><strong>Privacy:</strong> I dati saranno trattati in forma anonima e aggregata.</li>
-      </ul>
-    </section>
+  <div id="landing">
+    <div class="card">
+      <h1>Studio sull'Innovazione Sociale</h1>
+      <p>Benvenuto. In questo studio ti chiederemo di analizzare un caso e proporre una soluzione utilizzando gli strumenti che ti verranno assegnati.</p>
+      <button class="btn" onclick="startExperiment()">Sì, accetto di partecipare</button>
+      <p style="font-size:12px;color:#94a3b8;margin-top:20px">Contatto: <a href="mailto:luca.zennaro@unive.it">luca.zennaro@unive.it</a></p>
+    </div>
+  </div>
 
-    <div class="buttons">
-      <button id="participateBtn" class="btn-primary">Sì, accetto di partecipare</button>
-      <button id="noBtn" class="btn-secondary">No, non desidero partecipare</button>
+  <div id="experiment" class="hidden">
+    <div class="left-panel">
+      <div class="box">
+        <h3>Domanda 1</h3>
+        <p id="domanda-testo">Analizza il seguente modello di business sociale e proponi tre miglioramenti innovativi (xxx).</p>
+      </div>
+      
+      <div class="box">
+        <h3>La tua risposta</h3>
+        <textarea placeholder="Scrivi qui la tua proposta..."></textarea>
+        <button class="btn btn-submit" onclick="alert('Risposta salvata! (Simulazione)')">Invia Risposta</button>
+      </div>
     </div>
 
-    <div id="after" class="hidden" style="margin-top:18px">
-      <p id="afterMessage" class="small"></p>
-    </div>
-
-    <footer>
-      <p>Per domande contattare: <a href="mailto:luca.zennaro@unive.it">luca.zennaro@unive.it</a></p>
-    </footer>
-  </main>
+    <div class="right-panel" id="tool-container">
+      </div>
+  </div>
 
   <script>
-    /* ----- CONFIGURAZIONE LINK QUESTIONARI ----- */
-    // Gruppo A: Utilizzerà l'IA
-    const GROUP_AI_URL = 'https://tuo-survey-A.com'; 
-    
-    // Gruppo B: Utilizzerà Motori di Ricerca/Controllo
-    const GROUP_SEARCH_URL = 'https://tuo-survey-B.com';
+    function startExperiment() {
+      // 1. Nascondi landing e mostra esperimento
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('experiment').classList.remove('hidden');
+      document.getElementById('experiment').style.display = 'flex';
 
-    const participateBtn = document.getElementById('participateBtn');
-    const noBtn = document.getElementById('noBtn');
-    const after = document.getElementById('after');
-
-    participateBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+      const toolContainer = document.getElementById('tool-container');
       
-      // Randomizzazione 50/50
-      const destination = Math.random() < 0.5 ? GROUP_AI_URL : GROUP_SEARCH_URL;
-      
-      participateBtn.textContent = 'Caricamento...';
-      participateBtn.style.opacity = '0.7';
-      
-      // Reindirizzamento al questionario assegnato
-      window.location.href = destination;
-    });
-
-    noBtn.addEventListener('click', () => {
-      document.querySelector('.buttons').classList.add('hidden');
-      after.classList.remove('hidden');
-      after.innerHTML = '<strong>Grazie.</strong> La tua scelta è stata registrata. Non è richiesta alcuna azione ulteriore.';
-    });
+      // 2. Randomizzazione 50/50
+      if (Math.random() < 0.5) {
+        // GRUPPO GOOGLE
+        toolContainer.innerHTML = `<iframe src="https://www.google.com/search?igu=1"></iframe>`;
+      } else {
+        // GRUPPO AI
+        toolContainer.innerHTML = `
+          <div class="ai-placeholder">
+            <h3>Strumento Assegnato: Assistente IA</h3>
+            <p>Per questo compito, utilizza ChatGPT per generare idee e supporto.</p>
+            <a href="https://chatgpt.com" target="_blank" class="btn" style="text-decoration:none">Apri ChatGPT in una nuova scheda</a>
+            <p style="margin-top:20px; font-size:14px; color:#64748b">Torna qui per scrivere la tua risposta finale dopo aver consultato l'IA.</p>
+          </div>`;
+      }
+    }
   </script>
 </body>
 </html>
