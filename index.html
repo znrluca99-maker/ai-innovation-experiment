@@ -27,4 +27,64 @@
 <body>
   <main class="card" role="main">
     <h1>Invito alla Partecipazione — Studio sull'Innovazione Sociale</h1>
-    <p class="lead">Stiamo conducendo una ricerca su come gli imprenditori sociali diseg
+    <p class="lead">Stiamo conducendo una ricerca su come gli imprenditori sociali disegnano i propri Business Model utilizzando diverse tecnologie.</p>
+
+    <section class="consent">
+      <h2 style="font-size:18px;margin:0 0 10px;color:#111827">Informazioni sullo studio</h2>
+      <p class="small" style="margin-bottom:12px">
+        Partecipando, verrai assegnato casualmente a uno dei due metodi di lavoro (IA o motori di ricerca tradizionali) per innovare un modello di business.
+      </p>
+      <ul class="small" style="margin-bottom:12px; padding-left:20px">
+        <li><strong>Durata:</strong> Circa 10-15 minuti.</li>
+        <li><strong>Volontarietà:</strong> Puoi interrompere lo studio in qualsiasi momento.</li>
+        <li><strong>Privacy:</strong> I dati saranno trattati in forma anonima e aggregata.</li>
+      </ul>
+    </section>
+
+    <div class="buttons">
+      <button id="participateBtn" class="btn-primary">Sì, accetto di partecipare</button>
+      <button id="noBtn" class="btn-secondary">No, non desidero partecipare</button>
+    </div>
+
+    <div id="after" class="hidden" style="margin-top:18px">
+      <p id="afterMessage" class="small"></p>
+    </div>
+
+    <footer>
+      <p>Per domande contattare: <a href="mailto:ricercatore@esempio.it">ricercatore@esempio.it</a></p>
+    </footer>
+  </main>
+
+  <script>
+    /* ----- CONFIGURAZIONE LINK QUESTIONARI ----- */
+    // Gruppo A: Utilizzerà l'IA
+    const GROUP_AI_URL = 'https://tuo-survey-A.com'; 
+    
+    // Gruppo B: Utilizzerà Motori di Ricerca/Controllo
+    const GROUP_SEARCH_URL = 'https://tuo-survey-B.com';
+
+    const participateBtn = document.getElementById('participateBtn');
+    const noBtn = document.getElementById('noBtn');
+    const after = document.getElementById('after');
+
+    participateBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Randomizzazione 50/50
+      const destination = Math.random() < 0.5 ? GROUP_AI_URL : GROUP_SEARCH_URL;
+      
+      participateBtn.textContent = 'Caricamento...';
+      participateBtn.style.opacity = '0.7';
+      
+      // Reindirizzamento al questionario assegnato
+      window.location.href = destination;
+    });
+
+    noBtn.addEventListener('click', () => {
+      document.querySelector('.buttons').classList.add('hidden');
+      after.classList.remove('hidden');
+      after.innerHTML = '<strong>Grazie.</strong> La tua scelta è stata registrata. Non è richiesta alcuna azione ulteriore.';
+    });
+  </script>
+</body>
+</html>
